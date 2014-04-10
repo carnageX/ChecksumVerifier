@@ -154,3 +154,19 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+
+# Custom Files
+_UpgradeReport_Files/
+Backup/
+crc-source/
+checkCRC.zip
+ChecksumVerifier_1.0.0.zip
+ChecksumVerifier_2.5.0.zip
+ChecksumVerifier-Source_1.0.0.zip
+ChecksumVerifier-Source_2.5.0.zip
+crc-source.zip
+icon.ai
+icon.psd
+UpgradeLog.htm
+UpgradeLog.XML
+readme.txt
