@@ -20,137 +20,20 @@ namespace MD5HashCheckGUI
 	/// </summary>
 	public partial class MainForm : Form
 	{
+		#region Form Methods
+		/// <summary>Default Constructor</summary>
 		public MainForm()
 		{
 			InitializeComponent();
 			this.TF_labelResult.Hide();
 			this.listChecksums.SelectedIndex = 0;
 			this.TF_labelFileSize.Text = "";
-		}
-		
-		/// <summary>
-		/// Generates checksum hash of a given file using a given algorithm.
-		/// </summary>
-		/// <param name="filename">File path and name to generate checksum.</param>
-		/// <param name="hashOption">Checksum Algorithm.  Options are: MD5, SHA-1, SHA-256, SHA-384, and SHA-512</param>
-		/// <returns>Hash string to be returned.</returns>
-		private static string GetHash(string filename, string hashOption)
-		{
-			string returnString = String.Empty;
-			try
-			{
-				if(hashOption.ToLower() == "md5")
-				{
-					MD5 md5Checksum = MD5.Create();
-                    using (FileStream fs = File.Open(filename, FileMode.Open))
-                    {
-                        returnString = BitConverter.ToString(md5Checksum.ComputeHash(fs)).Replace("-", "").ToLower();
-                    }//using  
-				}//if
-				else if(hashOption.ToLower() == "sha-1")
-				{
-					SHA1 sha1Checksum = SHA1.Create();
-                    using (FileStream fs = File.Open(filename, FileMode.Open))
-                    {
-                        returnString = BitConverter.ToString(sha1Checksum.ComputeHash(fs)).Replace("-", "").ToLower();
-                    }//using 
-				}//else if
-				else if(hashOption.ToLower() == "sha-256")
-				{
-					SHA256 sha256Checksum = SHA256.Create();
-                    using (FileStream fs = File.Open(filename, FileMode.Open))
-                    {
-                        returnString = BitConverter.ToString(sha256Checksum.ComputeHash(fs)).Replace("-", "").ToLower();
-                    }//using 
-				}//else if
-				else if(hashOption.ToLower() == "sha-384")
-				{
-					SHA384 sha384Checksum = SHA384.Create();
-                    using (FileStream fs = File.Open(filename, FileMode.Open))
-                    {
-                        returnString = BitConverter.ToString(sha384Checksum.ComputeHash(fs)).Replace("-", "").ToLower();
-                    }//using 
-				}//else if
-				else if(hashOption.ToLower() == "sha-512")
-				{
-					SHA512 sha512Checksum = SHA512.Create();
-                    using (FileStream fs = File.Open(filename, FileMode.Open))
-                    {
-                        returnString = BitConverter.ToString(sha512Checksum.ComputeHash(fs)).Replace("-", "").ToLower();
-                    }//using 
-				}//else if
-                else if (hashOption.ToLower() == "crc16")
-                {
-                    /*CRC16 crc16Checksum = new CRC16();
-                    using (FileStream fs = File.Open(filename, FileMode.Open))
-                    {
-                        foreach (byte b in crc16Checksum.ComputeHash(fs))
-                        {
-                            returnString =  returnString.Insert(0, b.ToString("x2").ToLower());
-                        }//foreach
-                    }//using*/
-                    //throws arithmetic overflow when choosing crc16
-                }//else if
-                else if (hashOption.ToLower() == "crc32")
-                {
-                    CRC32 crc32Checksum = new CRC32();
-                    using (FileStream fs = File.Open(filename, FileMode.Open))
-                    {
-                        foreach (byte b in crc32Checksum.ComputeHash(fs))
-                        {
-                            returnString = returnString.Insert(0, b.ToString("x2").ToLower());
-                        }//foreach
-                    }//using
-                }//else if
-                else
-                {
-                    returnString = "Not a valid algorithm option!";
-                }//else
-				
-				return returnString;
-			}//try
-			catch
-			{
-				throw;
-			}//catch
-		}//GetHash
-		
-		/// <summary>
-		/// Compares two checksums and returns true if they are the same, otherwise false. 
-		/// </summary>
-		/// <param name="hash1">First checksum hash to compare</param>
-		/// <param name="hash2">Second checksum hash to compare</param>
-		/// <returns></returns>
-		private bool CompareHashes(string hash1, string hash2)
-		{
-			if(String.Equals(hash1.ToLower().Trim(), hash2.ToLower().Trim()))
-				return true;
-			else
-				return false;
-		}//CompareHashes
-		
-		/// <summary>
-		/// Compares a list of checksum strings to a single inputted checksum. 
-		/// </summary>
-		/// <param name="hash">Single checksum to compare against.</param>
-		/// <param name="hashFileList">List of checksum strings to compare against the single checksum.</param>
-		/// <returns></returns>
-		private bool CompareHashes(string hash, List<string> hashFileList)
-		{
-			bool returnBool = true;
-			
-			foreach(string s in hashFileList)
-			{
-				if(String.Equals(hash.ToLower().Trim(), s.ToLower().Trim()) == false)
-				{
-					returnBool = false;
-					break;
-				}//if
-			}//CompareHashes
-			return returnBool;
-		}//CompareHashes
-		
+		}//MainForm
+
 		#region Text/File Compare
+		/// <summary>TF File browse button click</summary>
+		/// <param name="sender">Sender</param>
+		/// <param name="e">Argument</param>
 		void TF_buttonBrowseClick(object sender, EventArgs e)
 		{
 			this.TF_openFile.ShowDialog();
@@ -163,6 +46,9 @@ namespace MD5HashCheckGUI
 			this.TF_progressBar.Value = 0;
 		}//Browse
 		
+		/// <summary>TF Compare button click</summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		void TF_buttonCompareClick(object sender, EventArgs e)
 		{
 			this.TF_labelResult.Hide();
@@ -200,7 +86,7 @@ namespace MD5HashCheckGUI
 					{
 						this.TF_textFileHash.ForeColor = Color.Black;
 					}//else
-				}
+				}//try
 				catch(Exception ex)
 				{
 					this.TF_labelResult.Text = ex.Message;
@@ -219,6 +105,9 @@ namespace MD5HashCheckGUI
 			}//else
 		}//Compare
 		
+		/// <summary>Toolstrip menu item Copy click</summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		void CopyToolStripMenuItem1Click(object sender, EventArgs e)
 		{
 			Clipboard.SetText(this.TF_textFileHash.Text);
@@ -226,6 +115,9 @@ namespace MD5HashCheckGUI
 		#endregion
 
 		#region Multiple File Compare
+		/// <summary>MF File browse button click</summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		void MF_buttonBrowseClick(object sender, EventArgs e)
 		{
 			this.MF_openFile.ShowDialog();
@@ -238,6 +130,9 @@ namespace MD5HashCheckGUI
 			this.MF_progressBar.Maximum = this.MF_fileList.Items.Count;
 		}//Browse
 		
+		/// <summary>MF Compare button click</summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		void MF_buttonCompareClick(object sender, EventArgs e)
 		{
 			this.MF_progressBar.Minimum = 0;
@@ -272,9 +167,12 @@ namespace MD5HashCheckGUI
 			else
 			{
 				this.MF_resultList.Items.Add("Error!  No file(s) to calculate checksum!");
-			}
+			}//else
 		}//Compare
 		
+		/// <summary>MF Copy menu item click</summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		void CopyToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			string tempStr = String.Empty;
@@ -287,6 +185,9 @@ namespace MD5HashCheckGUI
 			Clipboard.SetText(tempStr);
 		}//Copy Selected
 		
+		/// <summary>Copy all menu item click</summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		void CopyAllToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			string tempStr = String.Empty;
@@ -299,6 +200,144 @@ namespace MD5HashCheckGUI
 			Clipboard.SetText(tempStr);
 		}//Copy All
 		#endregion
-	
+		#endregion
+		
+		#region Helper Methods
+		/// <summary>Generates checksum hash of a given file using a given algorithm.</summary>
+		/// <param name="filename">File path and name to generate checksum.</param>
+		/// <param name="hashOption">Checksum Algorithm.  Options are: MD5, SHA-1, SHA-256, SHA-384, and SHA-512</param>
+		/// <returns>Hash string to be returned.</returns>
+		private static string GetHash(string filename, string hashOption)
+		{
+			try
+			{
+				return ComputeHashAlgorithm(filename, hashOption);
+			}//try
+			catch
+			{
+				throw;
+			}//catch
+		}//GetHash
+
+		/// <summary>Gets the computed checksum for the provided file using the provided algorithm</summary>
+		/// <param name="filename">File to read</param>
+		/// <param name="hashOption">Hash algorithm to use when generating checksum</param>
+		/// <returns></returns>
+		private static string ComputeHashAlgorithm(string filename, string hashOption)
+		{
+			string computedHash = String.Empty;
+
+			if (hashOption.ToLower() == "md5")
+			{
+				MD5 md5Checksum = MD5.Create();
+				using (FileStream fs = File.Open(filename, FileMode.Open))
+				{
+					computedHash = FormatHashChecksum(md5Checksum.ComputeHash(fs));
+				}//using  
+			}//if
+			else if (hashOption.ToLower() == "sha-1")
+			{
+				SHA1 sha1Checksum = SHA1.Create();
+				using (FileStream fs = File.Open(filename, FileMode.Open))
+				{
+					computedHash = FormatHashChecksum(sha1Checksum.ComputeHash(fs));
+				}//using 
+			}//else if
+			else if (hashOption.ToLower() == "sha-256")
+			{
+				SHA256 sha256Checksum = SHA256.Create();
+				using (FileStream fs = File.Open(filename, FileMode.Open))
+				{
+					computedHash = FormatHashChecksum(sha256Checksum.ComputeHash(fs));
+				}//using 
+			}//else if
+			else if (hashOption.ToLower() == "sha-384")
+			{
+				SHA384 sha384Checksum = SHA384.Create();
+				using (FileStream fs = File.Open(filename, FileMode.Open))
+				{
+					computedHash = FormatHashChecksum(sha384Checksum.ComputeHash(fs));
+				}//using 
+			}//else if
+			else if (hashOption.ToLower() == "sha-512")
+			{
+				SHA512 sha512Checksum = SHA512.Create();
+				using (FileStream fs = File.Open(filename, FileMode.Open))
+				{
+					computedHash = FormatHashChecksum(sha512Checksum.ComputeHash(fs));
+				}//using 
+			}//else if
+			else if (hashOption.ToLower() == "crc16")
+			{
+				/*CRC16 crc16Checksum = new CRC16();
+				using (FileStream fs = File.Open(filename, FileMode.Open))
+				{
+					foreach (byte b in crc16Checksum.ComputeHash(fs))
+					{
+						returnString =  returnString.Insert(0, b.ToString("x2").ToLower());
+					}//foreach
+				}//using*/
+				//throws arithmetic overflow when choosing crc16
+			}//else if
+			else if (hashOption.ToLower() == "crc32")
+			{
+				CRC32 crc32Checksum = new CRC32();
+				using (FileStream fs = File.Open(filename, FileMode.Open))
+				{
+					foreach (byte b in crc32Checksum.ComputeHash(fs))
+					{
+						computedHash = computedHash.Insert(0, b.ToString("x2").ToLower());
+					}//foreach
+				}//using
+			}//else if
+			else
+			{
+				computedHash = "Not a valid algorithm option!";
+			}//else
+			return computedHash;
+		}//ComputeHashAlgorithm
+
+		/// <summary>Formats the inputted byte array by removing hyphens</summary>
+		/// <param name="hashArray">Byte array computed from checksum</param>
+		/// <returns>Formatted checksum string</returns>
+		private static string FormatHashChecksum(byte[] hashArray)
+		{
+			return BitConverter.ToString(hashArray).Replace("-", "").ToLower();
+		}//FormatHashChecksum
+		
+		/// <summary>Compares two checksums and returns true if they are the same, otherwise false.</summary>
+		/// <param name="hash1">First checksum hash to compare</param>
+		/// <param name="hash2">Second checksum hash to compare</param>
+		/// <returns>True/False if hash strings are the same</returns>
+		private bool CompareHashes(string hash1, string hash2)
+		{
+			if(String.Equals(hash1.ToLower().Trim(), hash2.ToLower().Trim()))
+				return true;
+			else
+				return false;
+		}//CompareHashes
+		
+		/// <summary>Compares a list of checksum strings to a single inputted checksum.</summary>
+		/// <param name="hash">Single checksum to compare against.</param>
+		/// <param name="hashFileList">List of checksum strings to compare against the single checksum.</param>
+		/// <returns></returns>
+		private bool CompareHashes(string hash, List<string> hashFileList)
+		{
+			//bool returnBool = true;
+			
+			//foreach(string s in hashFileList)
+			//{
+			//    if(String.Equals(hash.ToLower().Trim(), s.ToLower().Trim()) == false)
+			//    {
+			//        returnBool = false;
+			//        break;
+			//    }//if
+			//}//CompareHashes
+			//return returnBool;
+
+			return hashFileList.Contains(hash.Trim());
+
+		}//CompareHashes
+		#endregion
 	}//Class
 }//Namespace
