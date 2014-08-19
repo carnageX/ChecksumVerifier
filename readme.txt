@@ -68,6 +68,10 @@ DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
 Changelog
 ====================================================================
 
+Version 2.5.1
+	* Code fixes and refactoring
+	* Additional source documentation added
+
 Version 2.5.0
 	* Fixed file handling to dispose of file handle when finished computing the hash
 	* Added CRC32 hash computation 
