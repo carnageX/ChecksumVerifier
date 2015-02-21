@@ -27,6 +27,7 @@ Supported Checksum Algorithms:
 	SHA-256
 	SHA-384
 	SHA-512
+	CRC16
 	CRC32
 
 Supports 2 modes: 
@@ -67,6 +68,13 @@ DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
 ====================================================================		
 Changelog
 ====================================================================
+
+Version 2.5.3
+	* Added CRC16 hash computation
+
+Version 2.5.2
+	* Set project target to AnyCPU instead of x86 only
+	* Setup TF and MF tabs to change the Compare button text depending on user-inputted hash textbox state
 
 Version 2.5.1
 	* Code fixes and refactoring

@@ -1,12 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: cbennet
- * Date: 8/21/2013
- * Time: 11:44 AM
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-using System;
+﻿using System;
 using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
@@ -28,6 +20,9 @@ namespace MD5HashCheckGUI
 			this.TF_labelResult.Hide();
 			this.listChecksums.SelectedIndex = 0;
 			this.TF_labelFileSize.Text = "";
+
+            this.TF_buttonCompare.Text = "Generate";
+            this.MF_buttonCompare.Text = "Generate";
 		}//MainForm
 
 		#region Text/File Compare
@@ -112,6 +107,21 @@ namespace MD5HashCheckGUI
 		{
 			Clipboard.SetText(this.TF_textFileHash.Text);
 		}//copy
+
+        /// <summary>TF User provided hash textbox text changed event</summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Argument</param>
+        private void TF_textUserHash_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(TF_textUserHash.Text))
+            {
+                this.TF_buttonCompare.Text = "Generate";
+            }
+            else
+            {
+                this.TF_buttonCompare.Text = "Compare";
+            }
+        }
 		#endregion
 
 		#region Multiple File Compare
@@ -199,6 +209,21 @@ namespace MD5HashCheckGUI
 			
 			Clipboard.SetText(tempStr);
 		}//Copy All
+
+        /// <summary>MF User provided hash textbox text changed event</summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">Argument</param>
+        private void MF_textUserHash_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(MF_textUserHash.Text))
+            {
+                this.MF_buttonCompare.Text = "Generate";
+            }
+            else
+            {
+                this.MF_buttonCompare.Text = "Compare";
+            }
+        }
 		#endregion
 		#endregion
 		
@@ -269,14 +294,14 @@ namespace MD5HashCheckGUI
 			}//else if
 			else if (hashOption.ToLower() == "crc16")
 			{
-				/*CRC16 crc16Checksum = new CRC16();
-				using (FileStream fs = File.Open(filename, FileMode.Open))
-				{
-					foreach (byte b in crc16Checksum.ComputeHash(fs))
-					{
-						returnString =  returnString.Insert(0, b.ToString("x2").ToLower());
-					}//foreach
-				}//using*/
+                CRC16 crc16Checksum = new CRC16();
+                using (FileStream fs = File.Open(filename, FileMode.Open))
+                {
+                    foreach (byte b in crc16Checksum.ComputeHash(fs))
+                    {
+                        computedHash =  computedHash.Insert(0, b.ToString("x2").ToLower());
+                    }//foreach
+                }//using
 				//throws arithmetic overflow when choosing crc16
 			}//else if
 			else if (hashOption.ToLower() == "crc32")
@@ -323,21 +348,8 @@ namespace MD5HashCheckGUI
 		/// <returns></returns>
 		private bool CompareHashes(string hash, List<string> hashFileList)
 		{
-			//bool returnBool = true;
-			
-			//foreach(string s in hashFileList)
-			//{
-			//    if(String.Equals(hash.ToLower().Trim(), s.ToLower().Trim()) == false)
-			//    {
-			//        returnBool = false;
-			//        break;
-			//    }//if
-			//}//CompareHashes
-			//return returnBool;
-
 			return hashFileList.Contains(hash.Trim());
-
-		}//CompareHashes
+        }//CompareHashes
 		#endregion
 	}//Class
 }//Namespace

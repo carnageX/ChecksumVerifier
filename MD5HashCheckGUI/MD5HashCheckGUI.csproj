@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Content Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

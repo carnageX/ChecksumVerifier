@@ -1,12 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: cbennet
- * Date: 8/21/2013
- * Time: 11:44 AM
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace MD5HashCheckGUI
