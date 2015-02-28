@@ -139,6 +139,11 @@ namespace MD5HashCheckGUI
 			this.MF_progressBar.Minimum = 1;
 			this.MF_progressBar.Maximum = this.MF_fileList.Items.Count;
 		}//Browse
+
+        private void MF_buttonExport_Click(object sender, EventArgs e)
+        {
+            this.MF_exportFile.ShowDialog();
+        }
 		
 		/// <summary>MF Compare button click</summary>
 		/// <param name="sender"></param>

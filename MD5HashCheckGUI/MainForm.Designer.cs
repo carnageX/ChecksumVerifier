@@ -60,21 +60,31 @@
             this.MF_openFile = new System.Windows.Forms.OpenFileDialog();
             this.listChecksums = new System.Windows.Forms.ComboBox();
             this.labelAlgorithm = new System.Windows.Forms.Label();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.MF_buttonExport = new System.Windows.Forms.Button();
+            this.MF_exportFile = new System.Windows.Forms.SaveFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.TF_contextMenu_checksum.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.MF_contextMenu_results.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(508, 182);
+            this.tabControl1.Size = new System.Drawing.Size(583, 233);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -94,37 +104,43 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(500, 156);
+            this.tabPage1.Size = new System.Drawing.Size(575, 207);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Text and File";
             // 
             // TF_labelFileSize
             // 
+            this.TF_labelFileSize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TF_labelFileSize.Location = new System.Drawing.Point(100, 70);
             this.TF_labelFileSize.Name = "TF_labelFileSize";
-            this.TF_labelFileSize.Size = new System.Drawing.Size(120, 23);
+            this.TF_labelFileSize.Size = new System.Drawing.Size(195, 23);
             this.TF_labelFileSize.TabIndex = 10;
             this.TF_labelFileSize.Text = "fileSize";
             // 
             // TF_progressBar
             // 
-            this.TF_progressBar.Location = new System.Drawing.Point(394, 142);
+            this.TF_progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TF_progressBar.Location = new System.Drawing.Point(469, 193);
             this.TF_progressBar.Name = "TF_progressBar";
             this.TF_progressBar.Size = new System.Drawing.Size(88, 10);
             this.TF_progressBar.TabIndex = 9;
             // 
             // TF_labelResult
             // 
+            this.TF_labelResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TF_labelResult.Location = new System.Drawing.Point(100, 125);
             this.TF_labelResult.Name = "TF_labelResult";
-            this.TF_labelResult.Size = new System.Drawing.Size(382, 25);
+            this.TF_labelResult.Size = new System.Drawing.Size(457, 25);
             this.TF_labelResult.TabIndex = 8;
             this.TF_labelResult.Text = "result";
             this.TF_labelResult.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // TF_buttonCompare
             // 
-            this.TF_buttonCompare.Location = new System.Drawing.Point(226, 70);
+            this.TF_buttonCompare.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TF_buttonCompare.Location = new System.Drawing.Point(301, 70);
             this.TF_buttonCompare.Name = "TF_buttonCompare";
             this.TF_buttonCompare.Size = new System.Drawing.Size(75, 29);
             this.TF_buttonCompare.TabIndex = 7;
@@ -134,11 +150,13 @@
             // 
             // TF_textFileHash
             // 
+            this.TF_textFileHash.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TF_textFileHash.BackColor = System.Drawing.SystemColors.Control;
             this.TF_textFileHash.ContextMenuStrip = this.TF_contextMenu_checksum;
             this.TF_textFileHash.Location = new System.Drawing.Point(100, 105);
             this.TF_textFileHash.Name = "TF_textFileHash";
-            this.TF_textFileHash.Size = new System.Drawing.Size(382, 20);
+            this.TF_textFileHash.Size = new System.Drawing.Size(457, 20);
             this.TF_textFileHash.TabIndex = 6;
             this.TF_textFileHash.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -167,14 +185,17 @@
             // 
             // TF_textFilePath
             // 
+            this.TF_textFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TF_textFilePath.Location = new System.Drawing.Point(100, 44);
             this.TF_textFilePath.Name = "TF_textFilePath";
-            this.TF_textFilePath.Size = new System.Drawing.Size(301, 20);
+            this.TF_textFilePath.Size = new System.Drawing.Size(376, 20);
             this.TF_textFilePath.TabIndex = 4;
             // 
             // TF_buttonBrowse
             // 
-            this.TF_buttonBrowse.Location = new System.Drawing.Point(407, 42);
+            this.TF_buttonBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TF_buttonBrowse.Location = new System.Drawing.Point(482, 42);
             this.TF_buttonBrowse.Name = "TF_buttonBrowse";
             this.TF_buttonBrowse.Size = new System.Drawing.Size(75, 23);
             this.TF_buttonBrowse.TabIndex = 3;
@@ -192,9 +213,11 @@
             // 
             // TF_textUserHash
             // 
+            this.TF_textUserHash.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TF_textUserHash.Location = new System.Drawing.Point(100, 18);
             this.TF_textUserHash.Name = "TF_textUserHash";
-            this.TF_textUserHash.Size = new System.Drawing.Size(382, 20);
+            this.TF_textUserHash.Size = new System.Drawing.Size(457, 20);
             this.TF_textUserHash.TabIndex = 1;
             this.TF_textUserHash.TextChanged += new System.EventHandler(this.TF_textUserHash_TextChanged);
             // 
@@ -209,37 +232,37 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage2.Controls.Add(this.MF_progressBar);
-            this.tabPage2.Controls.Add(this.MF_resultList);
+            this.tabPage2.Controls.Add(this.splitContainer1);
             this.tabPage2.Controls.Add(this.MF_textUserHash);
             this.tabPage2.Controls.Add(this.label1);
-            this.tabPage2.Controls.Add(this.MF_buttonBrowse);
-            this.tabPage2.Controls.Add(this.MF_buttonCompare);
-            this.tabPage2.Controls.Add(this.MF_fileList);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(500, 156);
+            this.tabPage2.Size = new System.Drawing.Size(575, 207);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Multiple Files";
             // 
             // MF_progressBar
             // 
-            this.MF_progressBar.Location = new System.Drawing.Point(132, 140);
+            this.MF_progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.MF_progressBar.Location = new System.Drawing.Point(3, 156);
             this.MF_progressBar.Name = "MF_progressBar";
             this.MF_progressBar.Size = new System.Drawing.Size(75, 10);
             this.MF_progressBar.TabIndex = 7;
             // 
             // MF_resultList
             // 
+            this.MF_resultList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MF_resultList.BackColor = System.Drawing.SystemColors.Control;
             this.MF_resultList.ContextMenuStrip = this.MF_contextMenu_results;
             this.MF_resultList.FormattingEnabled = true;
             this.MF_resultList.HorizontalScrollbar = true;
-            this.MF_resultList.Location = new System.Drawing.Point(213, 32);
+            this.MF_resultList.Location = new System.Drawing.Point(84, 5);
             this.MF_resultList.Name = "MF_resultList";
             this.MF_resultList.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.MF_resultList.Size = new System.Drawing.Size(268, 121);
+            this.MF_resultList.Size = new System.Drawing.Size(286, 160);
             this.MF_resultList.TabIndex = 6;
             // 
             // MF_contextMenu_results
@@ -267,9 +290,11 @@
             // 
             // MF_textUserHash
             // 
+            this.MF_textUserHash.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MF_textUserHash.Location = new System.Drawing.Point(78, 6);
             this.MF_textUserHash.Name = "MF_textUserHash";
-            this.MF_textUserHash.Size = new System.Drawing.Size(403, 20);
+            this.MF_textUserHash.Size = new System.Drawing.Size(493, 20);
             this.MF_textUserHash.TabIndex = 5;
             this.MF_textUserHash.TextChanged += new System.EventHandler(this.MF_textUserHash_TextChanged);
             // 
@@ -283,7 +308,7 @@
             // 
             // MF_buttonBrowse
             // 
-            this.MF_buttonBrowse.Location = new System.Drawing.Point(132, 32);
+            this.MF_buttonBrowse.Location = new System.Drawing.Point(3, 5);
             this.MF_buttonBrowse.Name = "MF_buttonBrowse";
             this.MF_buttonBrowse.Size = new System.Drawing.Size(75, 23);
             this.MF_buttonBrowse.TabIndex = 3;
@@ -293,7 +318,7 @@
             // 
             // MF_buttonCompare
             // 
-            this.MF_buttonCompare.Location = new System.Drawing.Point(132, 61);
+            this.MF_buttonCompare.Location = new System.Drawing.Point(3, 34);
             this.MF_buttonCompare.Name = "MF_buttonCompare";
             this.MF_buttonCompare.Size = new System.Drawing.Size(75, 23);
             this.MF_buttonCompare.TabIndex = 2;
@@ -303,11 +328,14 @@
             // 
             // MF_fileList
             // 
+            this.MF_fileList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MF_fileList.FormattingEnabled = true;
             this.MF_fileList.HorizontalScrollbar = true;
-            this.MF_fileList.Location = new System.Drawing.Point(6, 32);
+            this.MF_fileList.Location = new System.Drawing.Point(3, 5);
             this.MF_fileList.Name = "MF_fileList";
-            this.MF_fileList.Size = new System.Drawing.Size(120, 121);
+            this.MF_fileList.Size = new System.Drawing.Size(182, 160);
             this.MF_fileList.TabIndex = 0;
             // 
             // MF_openFile
@@ -316,6 +344,8 @@
             // 
             // listChecksums
             // 
+            this.listChecksums.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listChecksums.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.listChecksums.FormattingEnabled = true;
             this.listChecksums.Items.AddRange(new object[] {
@@ -326,31 +356,65 @@
             "SHA-512",
             "CRC16",
             "CRC32"});
-            this.listChecksums.Location = new System.Drawing.Point(439, 7);
+            this.listChecksums.Location = new System.Drawing.Point(514, 7);
             this.listChecksums.Name = "listChecksums";
             this.listChecksums.Size = new System.Drawing.Size(77, 21);
             this.listChecksums.TabIndex = 1;
             // 
             // labelAlgorithm
             // 
-            this.labelAlgorithm.Location = new System.Drawing.Point(374, 7);
+            this.labelAlgorithm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelAlgorithm.Location = new System.Drawing.Point(449, 7);
             this.labelAlgorithm.Name = "labelAlgorithm";
             this.labelAlgorithm.Size = new System.Drawing.Size(59, 21);
             this.labelAlgorithm.TabIndex = 10;
             this.labelAlgorithm.Text = "Algorithm: ";
             this.labelAlgorithm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(9, 32);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.MF_fileList);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.MF_buttonExport);
+            this.splitContainer1.Panel2.Controls.Add(this.MF_progressBar);
+            this.splitContainer1.Panel2.Controls.Add(this.MF_resultList);
+            this.splitContainer1.Panel2.Controls.Add(this.MF_buttonBrowse);
+            this.splitContainer1.Panel2.Controls.Add(this.MF_buttonCompare);
+            this.splitContainer1.Size = new System.Drawing.Size(565, 169);
+            this.splitContainer1.SplitterDistance = 188;
+            this.splitContainer1.TabIndex = 8;
+            // 
+            // MF_buttonExport
+            // 
+            this.MF_buttonExport.Location = new System.Drawing.Point(3, 63);
+            this.MF_buttonExport.Name = "MF_buttonExport";
+            this.MF_buttonExport.Size = new System.Drawing.Size(75, 23);
+            this.MF_buttonExport.TabIndex = 8;
+            this.MF_buttonExport.Text = "Export...";
+            this.MF_buttonExport.UseVisualStyleBackColor = true;
+            this.MF_buttonExport.Visible = false;
+            this.MF_buttonExport.Click += new System.EventHandler(this.MF_buttonExport_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 206);
+            this.ClientSize = new System.Drawing.Size(607, 257);
             this.Controls.Add(this.labelAlgorithm);
             this.Controls.Add(this.listChecksums);
             this.Controls.Add(this.tabControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(623, 296);
             this.Name = "MainForm";
             this.Text = "Checksum Verifier Utility";
             this.tabControl1.ResumeLayout(false);
@@ -360,6 +424,10 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.MF_contextMenu_results.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
@@ -393,5 +461,8 @@
 		private System.Windows.Forms.Label TF_labelResult;
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button MF_buttonExport;
+        private System.Windows.Forms.SaveFileDialog MF_exportFile;
 	}
 }
