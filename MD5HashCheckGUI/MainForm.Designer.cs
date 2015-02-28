@@ -402,7 +402,6 @@
             this.MF_buttonExport.TabIndex = 8;
             this.MF_buttonExport.Text = "Export...";
             this.MF_buttonExport.UseVisualStyleBackColor = true;
-            this.MF_buttonExport.Visible = false;
             this.MF_buttonExport.Click += new System.EventHandler(this.MF_buttonExport_Click);
             // 
             // MainForm

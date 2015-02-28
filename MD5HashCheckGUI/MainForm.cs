@@ -140,10 +140,31 @@ namespace MD5HashCheckGUI
 			this.MF_progressBar.Maximum = this.MF_fileList.Items.Count;
 		}//Browse
 
+        /// <summary>MF File Export button click</summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MF_buttonExport_Click(object sender, EventArgs e)
         {
-            this.MF_exportFile.ShowDialog();
-        }
+            if (this.MF_fileList.Items.Count > 0)
+            {
+                this.MF_exportFile.Filter = "Text File | *.txt";
+                this.MF_exportFile.Title = "Save generated checksums...";
+                this.MF_exportFile.FileName = listChecksums.SelectedItem.ToString() + "ChecksumList.txt";
+                this.MF_exportFile.ShowDialog();
+
+                using (StreamWriter swExport = new StreamWriter(this.MF_exportFile.OpenFile()))
+                {
+                    for (int i = 0; i < this.MF_resultList.Items.Count; i++)
+                    {
+                        swExport.WriteLine(this.MF_resultList.Items[i].ToString());
+                    }//for
+                }//using
+            }
+            else
+            {
+                MessageBox.Show("Error!  No checksums to export!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }//Export
 		
 		/// <summary>MF Compare button click</summary>
 		/// <param name="sender"></param>
@@ -165,16 +186,16 @@ namespace MD5HashCheckGUI
 					{
 						if(CompareHashes(this.MF_textUserHash.Text, hash))
 						{
-							this.MF_resultList.Items.Add(String.Format("File {0}: Checkum match! - {1}", (i + 1), hash));
+							this.MF_resultList.Items.Add(String.Format("{0}: Checkum match! - {1} - {2}", this.MF_fileList.Items[i].ToString(), this.listChecksums.SelectedItem.ToString(), hash));
 						}//if
 						else
 						{
-							this.MF_resultList.Items.Add(String.Format("File {0}: Checkum mismatch! - {1}", (i + 1), hash));
+                            this.MF_resultList.Items.Add(String.Format("{0}: Checkum mismatch! - {1} - {2}", this.MF_fileList.Items[i].ToString(), this.listChecksums.SelectedItem.ToString(), hash));
 						}//else
 					}//if
 					else
 					{
-						this.MF_resultList.Items.Add(String.Format("File {0}: {1}", (i + 1), hash));
+                        this.MF_resultList.Items.Add(String.Format("{0} - {1} - {2}", this.MF_fileList.Items[i].ToString(), this.listChecksums.SelectedItem.ToString(), hash));
 					}//else
 				}//for
 				this.Cursor = Cursors.Default;

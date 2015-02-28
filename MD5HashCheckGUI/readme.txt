@@ -69,6 +69,11 @@ DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
 Changelog
 ====================================================================
 
+Version 2.6.0
+	* Allow form to be resizable / maximized
+	* Changed display format of Multifile results
+	* Allow export of Multifile results to a text file
+
 Version 2.5.3
 	* Added CRC16 hash computation
 
