@@ -69,6 +69,10 @@ DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
 Changelog
 ====================================================================
 
+Version 3.0.0
+	* Added ability to select multiple algorithms at once
+	* Press "Delete" key to deselect all items, and "Shift+Delete" to select all items
+
 Version 2.6.0
 	* Allow form to be resizable / maximized
 	* Changed display format of Multifile results

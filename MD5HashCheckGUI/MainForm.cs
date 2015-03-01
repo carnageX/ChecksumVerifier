@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using CheckComboBoxTest;
 
 namespace MD5HashCheckGUI
 {
@@ -23,6 +24,13 @@ namespace MD5HashCheckGUI
 
             this.TF_buttonCompare.Text = "Generate";
             this.MF_buttonCompare.Text = "Generate";
+
+            List<string> algorithms = new List<string>() { "MD5", "SHA-1", "SHA-256", "SHA-384", "SHA-512", "CRC16", "CRC32" };
+
+            this.ccblistChecksums.DisplayMember = "name";
+            this.ccblistChecksums.ValueMember = "val";
+            this.ccblistChecksums.ValueSeparator = "+";
+            PopulateAlgorithmList(algorithms);
 		}//MainForm
 
 		#region Text/File Compare
@@ -254,6 +262,18 @@ namespace MD5HashCheckGUI
 		#endregion
 		
 		#region Helper Methods
+        /// <summary>Populate the list of ComboCheckBox with given algorithms</summary>
+        /// <param name="algorithms">String list of algorithms</param>
+        private void PopulateAlgorithmList(List<string> algorithms)
+        {
+            foreach(var s in algorithms)
+            {
+                CCBoxItem item = new CCBoxItem(s, algorithms.IndexOf(s));
+                this.ccblistChecksums.Items.Add(item);
+                this.ccblistChecksums.SetItemChecked(0, true);
+            }//foreach
+        }//PopulateAlgorithmList
+        
 		/// <summary>Generates checksum hash of a given file using a given algorithm.</summary>
 		/// <param name="filename">File path and name to generate checksum.</param>
 		/// <param name="hashOption">Checksum Algorithm.  Options are: MD5, SHA-1, SHA-256, SHA-384, and SHA-512</param>
