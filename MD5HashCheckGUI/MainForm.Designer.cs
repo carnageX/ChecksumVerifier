@@ -32,12 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.TF_textFileHash = new System.Windows.Forms.RichTextBox();
             this.TF_labelFileSize = new System.Windows.Forms.Label();
             this.TF_progressBar = new System.Windows.Forms.ProgressBar();
             this.TF_labelResult = new System.Windows.Forms.Label();
+            this.listChecksums = new System.Windows.Forms.ComboBox();
             this.TF_buttonCompare = new System.Windows.Forms.Button();
-            this.TF_contextMenu_checksum = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.copyToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.TF_labelFileHash = new System.Windows.Forms.Label();
             this.TF_textFilePath = new System.Windows.Forms.TextBox();
             this.TF_buttonBrowse = new System.Windows.Forms.Button();
@@ -57,22 +57,22 @@
             this.MF_buttonCompare = new System.Windows.Forms.Button();
             this.MF_textUserHash = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.TF_contextMenu_checksum = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.TF_openFile = new System.Windows.Forms.OpenFileDialog();
             this.MF_openFile = new System.Windows.Forms.OpenFileDialog();
-            this.listChecksums = new System.Windows.Forms.ComboBox();
             this.labelAlgorithm = new System.Windows.Forms.Label();
             this.MF_exportFile = new System.Windows.Forms.SaveFileDialog();
-            this.TF_textFileHash = new System.Windows.Forms.RichTextBox();
             this.ccblistChecksums = new CheckComboBoxTest.CheckedComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.TF_contextMenu_checksum.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.MF_contextMenu_results.SuspendLayout();
+            this.TF_contextMenu_checksum.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -110,6 +110,21 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Text and File";
             // 
+            // TF_textFileHash
+            // 
+            this.TF_textFileHash.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TF_textFileHash.BackColor = System.Drawing.SystemColors.Control;
+            this.TF_textFileHash.ContextMenuStrip = this.TF_contextMenu_checksum;
+            this.TF_textFileHash.Location = new System.Drawing.Point(100, 105);
+            this.TF_textFileHash.Name = "TF_textFileHash";
+            this.TF_textFileHash.ReadOnly = true;
+            this.TF_textFileHash.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.TF_textFileHash.Size = new System.Drawing.Size(457, 57);
+            this.TF_textFileHash.TabIndex = 11;
+            this.TF_textFileHash.Text = "";
+            // 
             // TF_labelFileSize
             // 
             this.TF_labelFileSize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -139,6 +154,25 @@
             this.TF_labelResult.Text = "result";
             this.TF_labelResult.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // listChecksums
+            // 
+            this.listChecksums.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listChecksums.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.listChecksums.FormattingEnabled = true;
+            this.listChecksums.Items.AddRange(new object[] {
+            "MD5",
+            "SHA-1",
+            "SHA-256",
+            "SHA-384",
+            "SHA-512",
+            "CRC16",
+            "CRC32"});
+            this.listChecksums.Location = new System.Drawing.Point(6, 180);
+            this.listChecksums.Name = "listChecksums";
+            this.listChecksums.Size = new System.Drawing.Size(77, 21);
+            this.listChecksums.TabIndex = 1;
+            // 
             // TF_buttonCompare
             // 
             this.TF_buttonCompare.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -149,21 +183,6 @@
             this.TF_buttonCompare.Text = "Compare";
             this.TF_buttonCompare.UseVisualStyleBackColor = true;
             this.TF_buttonCompare.Click += new System.EventHandler(this.TF_buttonCompareClick);
-            // 
-            // TF_contextMenu_checksum
-            // 
-            this.TF_contextMenu_checksum.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyToolStripMenuItem1});
-            this.TF_contextMenu_checksum.Name = "TF_contextMenu_checksum";
-            this.TF_contextMenu_checksum.ShowImageMargin = false;
-            this.TF_contextMenu_checksum.Size = new System.Drawing.Size(78, 26);
-            // 
-            // copyToolStripMenuItem1
-            // 
-            this.copyToolStripMenuItem1.Name = "copyToolStripMenuItem1";
-            this.copyToolStripMenuItem1.Size = new System.Drawing.Size(77, 22);
-            this.copyToolStripMenuItem1.Text = "Copy";
-            this.copyToolStripMenuItem1.Click += new System.EventHandler(this.CopyToolStripMenuItem1Click);
             // 
             // TF_labelFileHash
             // 
@@ -361,28 +380,24 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Checksum:";
             // 
+            // TF_contextMenu_checksum
+            // 
+            this.TF_contextMenu_checksum.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem1});
+            this.TF_contextMenu_checksum.Name = "TF_contextMenu_checksum";
+            this.TF_contextMenu_checksum.ShowImageMargin = false;
+            this.TF_contextMenu_checksum.Size = new System.Drawing.Size(78, 26);
+            // 
+            // copyToolStripMenuItem1
+            // 
+            this.copyToolStripMenuItem1.Name = "copyToolStripMenuItem1";
+            this.copyToolStripMenuItem1.Size = new System.Drawing.Size(77, 22);
+            this.copyToolStripMenuItem1.Text = "Copy";
+            this.copyToolStripMenuItem1.Click += new System.EventHandler(this.CopyToolStripMenuItem1Click);
+            // 
             // MF_openFile
             // 
             this.MF_openFile.Multiselect = true;
-            // 
-            // listChecksums
-            // 
-            this.listChecksums.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listChecksums.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.listChecksums.FormattingEnabled = true;
-            this.listChecksums.Items.AddRange(new object[] {
-            "MD5",
-            "SHA-1",
-            "SHA-256",
-            "SHA-384",
-            "SHA-512",
-            "CRC16",
-            "CRC32"});
-            this.listChecksums.Location = new System.Drawing.Point(6, 180);
-            this.listChecksums.Name = "listChecksums";
-            this.listChecksums.Size = new System.Drawing.Size(77, 21);
-            this.listChecksums.TabIndex = 1;
             // 
             // labelAlgorithm
             // 
@@ -394,20 +409,6 @@
             this.labelAlgorithm.TabIndex = 10;
             this.labelAlgorithm.Text = "Algorithm: ";
             this.labelAlgorithm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // TF_textFileHash
-            // 
-            this.TF_textFileHash.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TF_textFileHash.BackColor = System.Drawing.SystemColors.Control;
-            this.TF_textFileHash.Location = new System.Drawing.Point(100, 105);
-            this.TF_textFileHash.Name = "TF_textFileHash";
-            this.TF_textFileHash.ReadOnly = true;
-            this.TF_textFileHash.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.TF_textFileHash.Size = new System.Drawing.Size(457, 57);
-            this.TF_textFileHash.TabIndex = 11;
-            this.TF_textFileHash.Text = "";
             // 
             // ccblistChecksums
             // 
@@ -443,7 +444,6 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.TF_contextMenu_checksum.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -451,6 +451,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.MF_contextMenu_results.ResumeLayout(false);
+            this.TF_contextMenu_checksum.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
