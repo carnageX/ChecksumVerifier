@@ -25,7 +25,8 @@ namespace CheckComboBoxTest {
         }
 
         public override string ToString() {
-            return string.Format("name: '{0}', value: {1}", name, val);
+            //return string.Format("name: '{0}', value: {1}", name, val);
+            return name;
         }
     }
 }

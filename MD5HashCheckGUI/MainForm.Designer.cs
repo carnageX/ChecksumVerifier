@@ -36,7 +36,6 @@
             this.TF_progressBar = new System.Windows.Forms.ProgressBar();
             this.TF_labelResult = new System.Windows.Forms.Label();
             this.TF_buttonCompare = new System.Windows.Forms.Button();
-            this.TF_textFileHash = new System.Windows.Forms.TextBox();
             this.TF_contextMenu_checksum = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.TF_labelFileHash = new System.Windows.Forms.Label();
@@ -63,6 +62,7 @@
             this.listChecksums = new System.Windows.Forms.ComboBox();
             this.labelAlgorithm = new System.Windows.Forms.Label();
             this.MF_exportFile = new System.Windows.Forms.SaveFileDialog();
+            this.TF_textFileHash = new System.Windows.Forms.RichTextBox();
             this.ccblistChecksums = new CheckComboBoxTest.CheckedComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -91,11 +91,12 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.TF_textFileHash);
             this.tabPage1.Controls.Add(this.TF_labelFileSize);
             this.tabPage1.Controls.Add(this.TF_progressBar);
             this.tabPage1.Controls.Add(this.TF_labelResult);
+            this.tabPage1.Controls.Add(this.listChecksums);
             this.tabPage1.Controls.Add(this.TF_buttonCompare);
-            this.tabPage1.Controls.Add(this.TF_textFileHash);
             this.tabPage1.Controls.Add(this.TF_labelFileHash);
             this.tabPage1.Controls.Add(this.TF_textFilePath);
             this.tabPage1.Controls.Add(this.TF_buttonBrowse);
@@ -129,7 +130,7 @@
             // 
             // TF_labelResult
             // 
-            this.TF_labelResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TF_labelResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TF_labelResult.Location = new System.Drawing.Point(100, 165);
             this.TF_labelResult.Name = "TF_labelResult";
@@ -148,19 +149,6 @@
             this.TF_buttonCompare.Text = "Compare";
             this.TF_buttonCompare.UseVisualStyleBackColor = true;
             this.TF_buttonCompare.Click += new System.EventHandler(this.TF_buttonCompareClick);
-            // 
-            // TF_textFileHash
-            // 
-            this.TF_textFileHash.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TF_textFileHash.BackColor = System.Drawing.SystemColors.Control;
-            this.TF_textFileHash.ContextMenuStrip = this.TF_contextMenu_checksum;
-            this.TF_textFileHash.Location = new System.Drawing.Point(100, 105);
-            this.TF_textFileHash.Multiline = true;
-            this.TF_textFileHash.Name = "TF_textFileHash";
-            this.TF_textFileHash.Size = new System.Drawing.Size(457, 57);
-            this.TF_textFileHash.TabIndex = 6;
-            this.TF_textFileHash.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // TF_contextMenu_checksum
             // 
@@ -391,24 +379,40 @@
             "SHA-512",
             "CRC16",
             "CRC32"});
-            this.listChecksums.Location = new System.Drawing.Point(350, 7);
+            this.listChecksums.Location = new System.Drawing.Point(6, 180);
             this.listChecksums.Name = "listChecksums";
             this.listChecksums.Size = new System.Drawing.Size(77, 21);
             this.listChecksums.TabIndex = 1;
             // 
             // labelAlgorithm
             // 
-            this.labelAlgorithm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelAlgorithm.Location = new System.Drawing.Point(449, 7);
+            this.labelAlgorithm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelAlgorithm.Location = new System.Drawing.Point(398, 7);
             this.labelAlgorithm.Name = "labelAlgorithm";
             this.labelAlgorithm.Size = new System.Drawing.Size(59, 21);
             this.labelAlgorithm.TabIndex = 10;
             this.labelAlgorithm.Text = "Algorithm: ";
             this.labelAlgorithm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // TF_textFileHash
+            // 
+            this.TF_textFileHash.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TF_textFileHash.BackColor = System.Drawing.SystemColors.Control;
+            this.TF_textFileHash.Location = new System.Drawing.Point(100, 105);
+            this.TF_textFileHash.Name = "TF_textFileHash";
+            this.TF_textFileHash.ReadOnly = true;
+            this.TF_textFileHash.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.TF_textFileHash.Size = new System.Drawing.Size(457, 57);
+            this.TF_textFileHash.TabIndex = 11;
+            this.TF_textFileHash.Text = "";
+            // 
             // ccblistChecksums
             // 
-            this.ccblistChecksums.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ccblistChecksums.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ccblistChecksums.BackColor = System.Drawing.SystemColors.Window;
             this.ccblistChecksums.CheckOnClick = true;
@@ -417,10 +421,10 @@
             this.ccblistChecksums.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.ccblistChecksums.FormattingEnabled = true;
             this.ccblistChecksums.IntegralHeight = false;
-            this.ccblistChecksums.Location = new System.Drawing.Point(511, 7);
+            this.ccblistChecksums.Location = new System.Drawing.Point(463, 7);
             this.ccblistChecksums.MaxDropDownItems = 7;
             this.ccblistChecksums.Name = "ccblistChecksums";
-            this.ccblistChecksums.Size = new System.Drawing.Size(77, 21);
+            this.ccblistChecksums.Size = new System.Drawing.Size(125, 21);
             this.ccblistChecksums.TabIndex = 11;
             this.ccblistChecksums.ValueSeparator = ", ";
             // 
@@ -431,7 +435,6 @@
             this.ClientSize = new System.Drawing.Size(607, 257);
             this.Controls.Add(this.ccblistChecksums);
             this.Controls.Add(this.labelAlgorithm);
-            this.Controls.Add(this.listChecksums);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(623, 296);
@@ -475,8 +478,7 @@
 		private System.Windows.Forms.Label TF_fileLabel;
 		private System.Windows.Forms.Button TF_buttonBrowse;
 		private System.Windows.Forms.TextBox TF_textFilePath;
-		private System.Windows.Forms.Label TF_labelFileHash;
-		private System.Windows.Forms.TextBox TF_textFileHash;
+        private System.Windows.Forms.Label TF_labelFileHash;
 		private System.Windows.Forms.Button TF_buttonCompare;
 		private System.Windows.Forms.Label TF_labelResult;
 		private System.Windows.Forms.TabPage tabPage1;
@@ -485,5 +487,6 @@
         private System.Windows.Forms.Button MF_buttonExport;
         private System.Windows.Forms.SaveFileDialog MF_exportFile;
         private CheckComboBoxTest.CheckedComboBox ccblistChecksums;
+        private System.Windows.Forms.RichTextBox TF_textFileHash;
 	}
 }

@@ -65,6 +65,7 @@
     <Compile Include="CheckedComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ChecksumVerifier.cs" />
     <Compile Include="CRC16.cs" />
     <Compile Include="CRC32.cs" />
     <Compile Include="MainForm.cs">
