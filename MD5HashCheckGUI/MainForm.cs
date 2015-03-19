@@ -7,9 +7,7 @@ using CheckComboBoxTest;
 
 namespace MD5HashCheckGUI
 {
-	/// <summary>
-	/// Description of MainForm.
-	/// </summary>
+	/// <summary>Main form</summary>
 	public partial class MainForm : Form
 	{
 		#region Form Methods
@@ -33,8 +31,9 @@ namespace MD5HashCheckGUI
 			this.ccblistChecksums.ValueSeparator = "+";
 			PopulateAlgorithmList(algorithms);
 		}//MainForm
+		#endregion
 
-		#region Text/File Compare
+        #region Text/File Compare
 		/// <summary>TF File browse button click</summary>
 		/// <param name="sender">Sender</param>
 		/// <param name="e">Argument</param>
@@ -67,8 +66,6 @@ namespace MD5HashCheckGUI
 					this.Cursor = Cursors.WaitCursor;
 					this.TF_progressBar.Increment(99);
 					
-					//string hash = GetHash(this.TF_textFilePath.Text, this.listChecksums.SelectedItem.ToString());
-					//this.TF_textFileHash.Text = hash;
                     List<string> selectedAlgorithms = GetSelectedAlgorithms(this.ccblistChecksums);
 					List<string> hashList = ChecksumVerifier.GetHash(this.TF_textFilePath.Text, selectedAlgorithms);
 
@@ -88,21 +85,11 @@ namespace MD5HashCheckGUI
 						{
 							if (ChecksumVerifier.CompareHashes(this.TF_textUserHash.Text, hash))
 							{
-                                //this.TF_textFileHash.ForeColor = Color.Green;
-                                //this.TF_labelResult.Text += String.Format("Valid! Checksum {0} matches! {1}", hash, System.Environment.NewLine);
-                                //this.TF_labelResult.Show();
-
-								this.TF_textFileHash.ForeColor = Color.Green;
-								this.TF_textFileHash.AppendText(String.Format("Valid! Checksum {0} matches!{1}", hash, System.Environment.NewLine));
+                                TF_AppendToResultsColored(String.Format("Valid! Checksum {0} matches!{1}", hash, System.Environment.NewLine), Color.Green);								
 							}//if
 							else
 							{
-                                //this.TF_textFileHash.ForeColor = Color.Red;
-                                //this.TF_labelResult.Text += String.Format("Invalid! Checksum {0} mismatches!{1}", hash, System.Environment.NewLine);
-                                //this.TF_labelResult.Show();
-
-                                this.TF_textFileHash.ForeColor = Color.Red;
-                                this.TF_textFileHash.AppendText(String.Format("Invalid! Checksum {0} mismatches!{1}", hash, System.Environment.NewLine));
+                                TF_AppendToResultsColored(String.Format("Invalid! Checksum {0} mismatches!{1}", hash, System.Environment.NewLine), Color.Red);
 							}//else
 						}//foreach
 					}//else
@@ -113,7 +100,6 @@ namespace MD5HashCheckGUI
 				catch(Exception ex)
 				{
 					this.TF_labelResult.Text = "Error! " + ex.Message;
-					//this.TF_textFileHash.Clear();
 					this.TF_labelFileSize.Text = "";
 					this.TF_labelResult.Show();
 					this.Cursor = Cursors.Default;
@@ -150,6 +136,18 @@ namespace MD5HashCheckGUI
 				this.TF_buttonCompare.Text = "Compare";
 			}
 		}
+
+        /// <summary>Appends a colored string of text to the single file's Rich Textbox.</summary>
+        /// <param name="appendString">String to append to the Rich textbox</param>
+        /// <param name="lineColor">Text color</param>
+        private void TF_AppendToResultsColored(string appendString, Color lineColor)
+        {
+            int length = this.TF_textFileHash.TextLength;
+            this.TF_textFileHash.AppendText(appendString);
+            this.TF_textFileHash.SelectionStart = length;
+            this.TF_textFileHash.SelectionLength = appendString.Length;
+            this.TF_textFileHash.SelectionColor = lineColor;
+        }
 		#endregion
 
 		#region Multiple File Compare
@@ -206,25 +204,29 @@ namespace MD5HashCheckGUI
 			if(this.MF_fileList.Items.Count > 0)
 			{
 				this.Cursor = Cursors.WaitCursor;
+                List<string> selectedAlgorithms = GetSelectedAlgorithms(this.ccblistChecksums);
 				for(int i = 0; i < this.MF_fileList.Items.Count; i++)
 				{
-					string hash = ChecksumVerifier.GetHash(this.MF_fileList.Items[i].ToString(), this.listChecksums.SelectedItem.ToString());
+                    List<string> hashList = ChecksumVerifier.GetHash(this.MF_fileList.Items[i].ToString(), selectedAlgorithms);
 					this.MF_progressBar.Increment(1);
-					if(this.MF_textUserHash.Text.Trim() != String.Empty)
-					{
-						if(ChecksumVerifier.CompareHashes(this.MF_textUserHash.Text, hash))
-						{
-							this.MF_resultList.Items.Add(String.Format("{0}: Checkum match! - {1} - {2}", this.MF_fileList.Items[i].ToString(), this.listChecksums.SelectedItem.ToString(), hash));
-						}//if
-						else
-						{
-							this.MF_resultList.Items.Add(String.Format("{0}: Checkum mismatch! - {1} - {2}", this.MF_fileList.Items[i].ToString(), this.listChecksums.SelectedItem.ToString(), hash));
-						}//else
-					}//if
-					else
-					{
-						this.MF_resultList.Items.Add(String.Format("{0} - {1} - {2}", this.MF_fileList.Items[i].ToString(), this.listChecksums.SelectedItem.ToString(), hash));
-					}//else
+                    for (int j = 0; j < hashList.Count; j++)
+                    {
+                        if (!String.IsNullOrWhiteSpace(this.MF_textUserHash.Text.Trim()))
+                        {
+                            if (ChecksumVerifier.CompareHashes(this.MF_textUserHash.Text, hashList[j]))
+                            {
+                                this.MF_resultList.Items.Add(String.Format("{0}: Checkum match! - {1} - {2}", this.MF_fileList.Items[i].ToString(), selectedAlgorithms[j], hashList[j]));
+                            }//if
+                            else
+                            {
+                                this.MF_resultList.Items.Add(String.Format("{0}: Checkum mismatch! - {1} - {2}", this.MF_fileList.Items[i].ToString(), selectedAlgorithms[j], hashList[j]));
+                            }//else
+                        }//if
+                        else
+                        {
+                            this.MF_resultList.Items.Add(String.Format("{0} - {1} - {2}", this.MF_fileList.Items[i].ToString(), selectedAlgorithms[j], hashList[j]));
+                        }//else
+                    }//foreach
 				}//for
 				this.Cursor = Cursors.Default;
 			}//if
@@ -279,7 +281,6 @@ namespace MD5HashCheckGUI
 			}
 		}
 		#endregion
-		#endregion
 		
 		#region Helper Methods
 		/// <summary>Populate the list of ComboCheckBox with given algorithms</summary>
@@ -294,6 +295,9 @@ namespace MD5HashCheckGUI
 			}//foreach
 		}//PopulateAlgorithmList
 
+        /// <summary>Gets the names of the checked algorithms.</summary>
+        /// <param name="algorithmList">List of algorithms from dropdown</param>
+        /// <returns>String list of selected algorithms</returns>
 		private List<string> GetSelectedAlgorithms(CheckedComboBox algorithmList)
 		{
 			string[] selectedItems = new string[algorithmList.Items.Count];
