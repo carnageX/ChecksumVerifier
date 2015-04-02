@@ -94,6 +94,14 @@ namespace MD5HashCheckGUI
                     computedHash = FormatHashChecksum(sha512Checksum.ComputeHash(fs));
                 }//using 
             }//else if
+            else if (hashOption.ToLower() == "ripemd160")
+            {
+                RIPEMD160 ripemd160Checksum = RIPEMD160.Create();
+                using (FileStream fs = File.Open(filename, FileMode.Open))
+                {
+                    computedHash = FormatHashChecksum(ripemd160Checksum.ComputeHash(fs));
+                }//using
+            }//else if
             else if (hashOption.ToLower() == "crc16")
             {
                 CRC16 crc16Checksum = new CRC16();

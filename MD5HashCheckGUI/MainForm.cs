@@ -24,7 +24,7 @@ namespace MD5HashCheckGUI
 			this.TF_buttonCompare.Text = "Generate";
 			this.MF_buttonCompare.Text = "Generate";
 
-			List<string> algorithms = new List<string>() { "MD5", "SHA-1", "SHA-256", "SHA-384", "SHA-512", "CRC16", "CRC32" };
+			List<string> algorithms = new List<string>() { "MD5", "SHA-1", "SHA-256", "SHA-384", "SHA-512", "RIPEMD160","CRC16", "CRC32" };
 
 			this.ccblistChecksums.DisplayMember = "name";
 			this.ccblistChecksums.ValueMember = "val";

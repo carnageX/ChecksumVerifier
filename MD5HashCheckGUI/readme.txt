@@ -27,6 +27,7 @@ Supported Checksum Algorithms:
 	SHA-256
 	SHA-384
 	SHA-512
+	RIPEMD160
 	CRC16
 	CRC32
 
@@ -68,6 +69,9 @@ DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
 ====================================================================		
 Changelog
 ====================================================================
+
+Version 3.1.0
+	* Added RIPEMD160 hash computation
 
 Version 3.0.0
 	* Added ability to select multiple algorithms at once
